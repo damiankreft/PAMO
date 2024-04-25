@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lab2</string>
+    <string name="title_home">Potrawy</string>
+    <string name="title_dashboard">Zdjęcie</string>
+    <string name="title_notifications">Wzór PPM</string>
+    <string name="title_recommendations">BMI</string>
+    <string name="image_desc_sample">It\'s just an image</string>
+</resources>
