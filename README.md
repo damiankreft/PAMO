@@ -1,3 +1,3 @@
 # PAMO
 ## Author - Damian Kreft
-[Monkey testing](monkey-testing.png)
+![Image](monkey-testing.png)
