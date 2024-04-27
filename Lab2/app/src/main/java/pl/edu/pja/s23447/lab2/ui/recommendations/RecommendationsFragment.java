@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import pl.edu.pja.s23447.lab2.R;
+import services.CalculationsService;
 
 public class RecommendationsFragment extends Fragment {
 
@@ -64,7 +65,7 @@ public class RecommendationsFragment extends Fragment {
         {
             double height = Double.parseDouble(heightString);
             double weight = Double.parseDouble(weightString);
-            double bmi = weight / Math.pow(height, 2);
+            double bmi = new CalculationsService().calculateBmi(height, weight);
             bmiTextView.setText(numberFormat.format(bmi));
         }
     }
