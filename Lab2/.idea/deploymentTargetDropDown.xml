@@ -5,6 +5,12 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="can_calculate_bmi()">
+        <State />
+      </entry>
+      <entry key="useAppContext()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
