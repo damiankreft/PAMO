@@ -26,11 +26,6 @@ class BmiChart : Fragment() {
         val webSettings = webView.getSettings()
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
-//        webSettings.loadWithOverviewMode = true
-//        webSettings.useWideViewPort = true
-//        webSettings.builtInZoomControls = true
-//        webSettings.displayZoomControls = false
-//        webSettings.setSupportZoom(true)
         webSettings.defaultTextEncodingName = "utf-8"
         webView.webChromeClient = WebChromeClient()
         webView.webViewClient = object : WebViewClient() {
@@ -44,42 +39,40 @@ class BmiChart : Fragment() {
 
         val htmlContent = generateHtmlContent()
         webView.loadData(htmlContent, "text/html", "UTF-8")
-//        webView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8", null)
-
         return rootView
     }
 
     private fun generateHtmlContent(): String = """ 
         <html>
-<head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+        <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
-
+        
         function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Day', 'BMI'],
-            ["1", 24],
-            ["2", 23],
-            ["3", 21],
-            ["4", 18]
+        ['Day', 'BMI'],
+        ["1", 24],
+        ["2", 23],
+        ["3", 21],
+        ["4", 18]
         ]);
-
+        
         var options = {
-            title: 'BMI Changes Per Day',
-            curveType: 'function',
-            legend: { position: 'bottom' }
+        title: 'BMI Changes Per Day',
+        curveType: 'function',
+        legend: { position: 'bottom' }
         };
-
+        
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
         }
-    </script>
-</head>
-<body style="background-color: red;">
-    <div id="chart_div" style="width: 100%; height: 500px;"></div>
-</body>
-</html>
-        """"
+        </script>
+        </head>
+        <body style="background-color: red;">
+        <div id="chart_div" style="width: 100%; height: 500px;"></div>
+        </body>
+        </html>
+    """"
 }
