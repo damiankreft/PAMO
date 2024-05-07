@@ -79,4 +79,11 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="40dp"
         tools:ignore="MissingConstraints" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/myFragment"
+        android:name="pl.edu.pja.s23447.lab2.ui.recommendations.BmiChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_bmi_chart" />
 </androidx.constraintlayout.widget.ConstraintLayout>

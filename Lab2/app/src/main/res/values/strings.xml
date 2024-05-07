@@ -5,4 +5,6 @@
     <string name="title_notifications">Wzór PPM</string>
     <string name="title_recommendations">BMI</string>
     <string name="image_desc_sample">It\'s just an image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
