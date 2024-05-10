@@ -9,15 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import pl.edu.pja.s23447.lab2.R;
 import pl.edu.pja.s23447.lab2.databinding.FragmentHomeBinding;
+import pl.edu.pja.s23447.lab2.ui.recommendations.ShoppingListAdapter;
+import pl.edu.pja.s23447.lab2.ui.recommendations.ShoppingListItem;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-
+    private ShoppingListAdapter shoppingListAdapter;
     private final String RECIPE_1_NAME = "Lamb Pilaf";
     private final String RECIPE_1_INGREDIENTS = "\n" +
             "2 tbs Butter\n" +
@@ -61,18 +67,44 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
+        shoppingListAdapter = new ShoppingListAdapter(new ArrayList<>());
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        var rvTodoItems = (RecyclerView) root.findViewById(R.id.rvTodoItems);
+        rvTodoItems.setAdapter(shoppingListAdapter);
+        rvTodoItems.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
 
         final TextView textView = binding.textHome;
         int min = 0;
         int max = 1;
         int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
         if (randomNum == 1) {
-            binding.textHome.setText(RECIPE_2_NAME + "\n\n" + RECIPE_2_INGREDIENTS + "\n\n" + RECIPE_2_INSTRUCTION);
+            binding.textHome.setText(RECIPE_2_NAME + "\n\n" + "\n\n" + RECIPE_2_INSTRUCTION);
+            var ingredients = new ArrayList<ShoppingListItem>();
+            shoppingListAdapter.addTodo(new ShoppingListItem("3 beetroot", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("4 tbs Olive Oil", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("1 Chicken Stock Cube", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("6 cups Water", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("3 potatoes", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("1 can Cannellini Beans", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("Garnish Dill", true));
+            shoppingListAdapter = new ShoppingListAdapter(ingredients);
+            shoppingListAdapter.notifyDataSetChanged();
         }
         else {
-            binding.textHome.setText(RECIPE_1_NAME + "\n\n" + RECIPE_1_INGREDIENTS + "\n\n" + RECIPE_1_INSTRUCTION);
+            binding.textHome.setText(RECIPE_1_NAME + "\n\n" + "\n\n" + RECIPE_1_INSTRUCTION);
+            var ingredients = new ArrayList<ShoppingListItem>();
+            shoppingListAdapter.addTodo(new ShoppingListItem("2 tbs Butter", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("1 chopped Onion", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("450g Lamb", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("600ml Vegetable Stock", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("2 cloves Garlic", true));
+            shoppingListAdapter.addTodo(new ShoppingListItem("2 cups Rice", false));
+            shoppingListAdapter.addTodo(new ShoppingListItem("Pinch Saffron", true));
+            shoppingListAdapter.addTodo(new ShoppingListItem("Garnish Parsley", true));
+            shoppingListAdapter = new ShoppingListAdapter(ingredients);
         }
 
         return root;
